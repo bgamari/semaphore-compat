@@ -1,0 +1,4 @@
+packages:
+  .,
+  ../unix,
+  ../Win32
