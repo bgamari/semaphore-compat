@@ -180,7 +180,7 @@ waitOnSemaphore (Semaphore { semaphore = sem }) =
     wait_res <- Win32.waitForSingleObject (Win32.semaphoreHandle sem) Win32.iNFINITE
     return $ wait_res == Win32.wAIT_OBJECT_0
 #else
-  Posix.semTryWait sem
+  Posix.semThreadWait sem
 #endif
 
 -- | Try to obtain a token from the semaphore, without blocking.
