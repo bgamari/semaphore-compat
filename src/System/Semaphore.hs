@@ -55,7 +55,7 @@ import Foreign.C.Types
 -- unix
 import qualified System.Posix.Semaphore as Posix
   ( Semaphore, OpenSemFlags(..)
-  , semOpen, semWaitInterruptible, semTryWait
+  , semOpen, semWaitInterruptible, semTryWait, semThreadWait
   , semGetValue, semPost, semUnlink )
 import qualified System.Posix.Files     as Posix
   ( stdFileMode )
@@ -173,12 +173,11 @@ openSemaphore nm@(SemaphoreName sem_name) = do
 --
 -- If you want to be able to cancel a wait operation, use
 -- 'forkWaitOnSemaphoreInterruptible' instead.
-waitOnSemaphore :: Semaphore -> IO Bool
+waitOnSemaphore :: Semaphore -> IO ()
 waitOnSemaphore (Semaphore { semaphore = sem }) =
 #if defined(mingw32_HOST_OS)
   MC.mask_ $ do
-    wait_res <- Win32.waitForSingleObject (Win32.semaphoreHandle sem) Win32.iNFINITE
-    return $ wait_res == Win32.wAIT_OBJECT_0
+    () <$ Win32.waitForSingleObject (Win32.semaphoreHandle sem) Win32.iNFINITE
 #else
   Posix.semThreadWait sem
 #endif
