@@ -1,4 +1,1 @@
-packages:
-  .,
-  ../unix,
-  ../Win32
+packages: .
