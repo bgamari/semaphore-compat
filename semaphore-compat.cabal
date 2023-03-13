@@ -45,7 +45,7 @@ library
 
     build-depends:
         base
-          >= 4.12 && < 4.19
+          >= 4.12 && < 4.20
       , exceptions
           >= 0.7  && < 0.11
 
@@ -56,9 +56,7 @@ library
     else
       build-depends:
         unix
-          >= 2.8 && < 2.9
-            -- TODO: bump lower bound once there is a unix release
-            -- containing the necessary semaphore changes.
+          >= 2.8.1.0 && < 2.9
 
     default-language:
         Haskell2010

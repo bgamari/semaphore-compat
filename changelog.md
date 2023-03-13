@@ -1,3 +1,3 @@
-### 1.0.0 (October 27th, 2022)
+### 1.0.0 (March 13, 2023)
 
 - First version of the `semaphore-compat` package.
