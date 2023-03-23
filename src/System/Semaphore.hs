@@ -256,6 +256,8 @@ data WaitId = WaitId { waitingThreadId :: ThreadId
 --
 -- The waiting operation can be interrupted using the
 -- 'interruptWaitOnSemaphore' function.
+--
+-- This implements a similar pattern to the @forkFinally@ function.
 forkWaitOnSemaphoreInterruptible
   :: Semaphore
   -> ( Either MC.SomeException Bool -> IO () ) -- ^ wait result action
